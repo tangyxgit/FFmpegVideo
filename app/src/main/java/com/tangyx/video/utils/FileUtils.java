@@ -52,6 +52,16 @@ public class FileUtils {
 		}
 		return localPath;
 	}
+
+	public String getMediaVideoPath(){
+		String directory = getStorageDirectory();
+		directory += "/video";
+		File file = new File(directory);
+		if(!file.exists()){
+			file.mkdir();
+		}
+		return directory;
+	}
 	
 	/**
 	 * 删除文件

@@ -1,5 +1,6 @@
 package com.tangyx.video;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -305,6 +306,7 @@ public class MakeVideoActivity extends AppCompatActivity implements View.OnClick
         handler.sendMessage(message);
     }
 
+    @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {

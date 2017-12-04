@@ -2,6 +2,8 @@ package com.tangyx.video.ffmpeg;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by tangyx
  * Date 2017/8/4
@@ -142,6 +144,63 @@ public class FFmpegCommands {
         commands[12] = "copy";
         //输出文件
         commands[13] = outputUrl;
+        return commands;
+    }
+
+    /**
+     * mp4转ts
+     * @param videoUrl
+     * @param outPath
+     * @param flip
+     * @return
+     */
+    public static String[] mp4ToTs(String videoUrl,String outPath,boolean flip){
+        Log.w("SLog","videoUrl:" + videoUrl + "\noutPath:" + outPath);
+        ArrayList<String> _commands = new ArrayList<>();
+        _commands.add("ffmpeg");
+        _commands.add("-i");
+        _commands.add(videoUrl);
+        if(flip){
+            _commands.add("-vf");
+            _commands.add("hflip");
+        }
+        _commands.add("-b");
+        _commands.add(String.valueOf(2 * 1024 * 1024));
+        _commands.add("-s");
+        _commands.add("720x1280");
+        _commands.add("-acodec");
+        _commands.add("copy");
+//        _commands.add("-vcodec");
+//        _commands.add("copy");
+        _commands.add(outPath);
+        String[] commands = new String[_commands.size()];
+        for (int i = 0; i < _commands.size(); i++) {
+            commands[i] = _commands.get(i);
+        }
+        return commands;
+    }
+    /**
+     * ts拼接视频
+     */
+    public static String[] concatTsVideo(String _filePath, String _outPath) {//-f concat -i list.txt -c copy concat.mp4
+        Log.w("SLog","_filePath:" + _filePath + "\n_outPath:" + _outPath);
+        ArrayList<String> _commands = new ArrayList<>();
+        _commands.add("ffmpeg");
+        _commands.add("-i");
+        _commands.add("concat:"+_filePath);
+        _commands.add("-b");
+        _commands.add(String.valueOf(2 * 1024 * 1024));
+        _commands.add("-s");
+        _commands.add("720x1280");
+        _commands.add("-acodec");
+        _commands.add("copy");
+        _commands.add("-vcodec");
+        _commands.add("copy");
+        _commands.add(_outPath);
+        String[] commands = new String[_commands.size()];
+        for (int i = 0; i < _commands.size(); i++) {
+            commands[i] = _commands.get(i);
+        }
         return commands;
     }
 }

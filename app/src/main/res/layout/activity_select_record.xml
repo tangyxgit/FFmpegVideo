@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/single_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一段视频录制"/>
+    <Button
+        android:id="@+id/multi_record"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="多段视频录制合成"/>
+</LinearLayout>

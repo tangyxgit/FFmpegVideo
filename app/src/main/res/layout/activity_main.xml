@@ -95,4 +95,10 @@
             android:clickable="true"
             android:src="@mipmap/live_close_icon" />
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/wait"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </FrameLayout>

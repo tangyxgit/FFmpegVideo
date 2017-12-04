@@ -320,4 +320,8 @@ public class MediaHelper implements SurfaceHolder.Callback {
         stopRecordUnSave();
         startPreView(mSurfaceHolder);
     }
+
+    public int getPosition() {
+        return position;
+    }
 }

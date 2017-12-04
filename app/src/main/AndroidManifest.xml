@@ -16,13 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SelectRecordActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MultiRecordActivity"/>
+        <activity android:name=".MainActivity"/>
         <activity android:name=".PermissionsActivity"/>
         <activity android:name=".MakeVideoActivity"/>
         <activity android:name=".MusicActivity"/>
