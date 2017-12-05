@@ -34,19 +34,58 @@ import java.util.List;
  */
 
 public class MultiRecordActivity extends AppCompatActivity implements View.OnClickListener{
+    /**
+     * 相机预览
+     */
     private SurfaceView mSurfaceView;
+    /**
+     * 开始录制按钮
+     */
     private ImageView mStartVideo;
+    /**
+     * 正在录制按钮，再次点击，停止录制
+     */
     private ImageView mStartVideoIng;
+    /**
+     * 录制时间
+     */
     private TextView mTime;
+    /**
+     * 录制进度条
+     */
     private ProgressBar mProgress;
+    /**
+     * 等待视频合成完成提示
+     */
     private ProgressBar mWait;
+    /**
+     * 录制主要工具类
+     */
     private MediaHelper mMediaHelper;
+    /**
+     * 录制进度值
+     */
     private int mProgressNumber=0;
+    /**
+     * 视频段文件编号
+     */
     private int mVideoNumber=1;
     private FileUtils mFileUtils;
+    /**
+     * 临时记录每段视频的参数内容
+     */
     private List<Mp4TsVideo> mTsVideo = new ArrayList<>();
+    /**
+     * mp4转ts流后的地址，主要合成的文件
+     */
     private List<String> mTsPath = new ArrayList<>();
+    /**
+     * 是否已经取消下一步，比如关闭了页面，就不再做线程处理，结束任务
+     */
     private boolean isCancel;
+    /**
+     * 权限相关
+     */
     private PermissionHelper mPermissionHelper;
 
     @Override
@@ -70,12 +109,15 @@ public class MultiRecordActivity extends AppCompatActivity implements View.OnCli
         mStartVideo.setOnClickListener(this);
         mStartVideoIng.setOnClickListener(this);
 
+        //录制之前删除所有的多余文件
         mFileUtils = new FileUtils(this);
         mFileUtils.deleteFile(mFileUtils.getMediaVideoPath(),null);
         mFileUtils.deleteFile(mFileUtils.getStorageDirectory(),null);
 
+
         mMediaHelper = new MediaHelper(this);
         mMediaHelper.setTargetDir(new File(mFileUtils.getMediaVideoPath()));
+        //视频段从编号1开始
         mMediaHelper.setTargetName(mVideoNumber + ".mp4");
         mPermissionHelper = new PermissionHelper(this);
     }
@@ -100,7 +142,6 @@ public class MultiRecordActivity extends AppCompatActivity implements View.OnCli
                 }
                 Log.e("SLog","mProgressNumber:"+mProgressNumber);
                 if (mProgressNumber < 8) {
-                    //时间太短不保存
                     //时间太短不保存
                     Toast.makeText(this,"请至少录制到红线位置",Toast.LENGTH_LONG).show();
                     mMediaHelper.stopRecordUnSave();
@@ -187,6 +228,10 @@ public class MultiRecordActivity extends AppCompatActivity implements View.OnCli
         handler.sendMessage(handler.obtainMessage(0));
     }
 
+    /**
+     * 停止录制
+     * @param isSave
+     */
     private void stopView(boolean isSave){
         int timer = mProgressNumber;
         mProgressNumber = 0;

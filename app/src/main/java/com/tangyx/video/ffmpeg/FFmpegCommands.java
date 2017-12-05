@@ -162,6 +162,7 @@ public class FFmpegCommands {
         _commands.add(videoUrl);
         if(flip){
             _commands.add("-vf");
+            //hflip左右翻转，vflip上下翻转
             _commands.add("hflip");
         }
         _commands.add("-b");

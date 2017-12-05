@@ -22,11 +22,25 @@ import java.io.File;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
+    /**
+     * 相机预览
+     */
     private SurfaceView mSurfaceView;
+    /**
+     * 开始录制按钮
+     */
     private ImageView mStartVideo;
+    /**
+     * 正在录制按钮，再次点击，停止录制
+     */
     private ImageView mStartVideoIng;
+    /**
+     * 录制时间
+     */
     private TextView mTime;
+    /**
+     * 录制进度条
+     */
     private ProgressBar mProgress;
     private MediaHelper mMediaHelper;
     private int mProgressNumber=0;
