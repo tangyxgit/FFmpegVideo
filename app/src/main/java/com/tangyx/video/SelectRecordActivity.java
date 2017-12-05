@@ -16,6 +16,7 @@ public class SelectRecordActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_select_record);
         findViewById(R.id.single_record).setOnClickListener(this);
         findViewById(R.id.multi_record).setOnClickListener(this);
